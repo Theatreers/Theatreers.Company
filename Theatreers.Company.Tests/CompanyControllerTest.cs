@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Theatreers.Company.Controllers;
-using theatreers.shared.Interfaces;
-using theatreers.shared.Models;
-using theatreers.shared.Services;
+using Theatreers.Shared.Interfaces;
+using Theatreers.Shared.Models;
+using Theatreers.Shared.Services;
 using Xunit;
 
 namespace Theatreers.Company.Tests

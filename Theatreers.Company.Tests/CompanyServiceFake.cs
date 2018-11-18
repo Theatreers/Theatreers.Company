@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using theatreers.shared.Models;
-using theatreers.shared.Interfaces;
+using Theatreers.Shared.Models;
+using Theatreers.Shared.Interfaces;
 
 public class CompanyServiceFake : ICompanyService
 {
