@@ -15,7 +15,7 @@ steps:
   displayName: 'Restore $(projectName).Tests dependencies'
   inputs:
     command: restore
-    projects: '$(projectName).tests/$(projectName).Tests.csproj'
+    projects: '$(projectName).Tests/$(projectName).Tests.csproj'
     vstsFeed: 'theatreers.Artifacts'
     restoreDirectory: '$(System.DefaultWorkingDirectory)/$(nugets)'
     verbosityRestore: Normal
