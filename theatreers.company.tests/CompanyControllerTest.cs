@@ -7,7 +7,7 @@ using theatreers.shared.Models;
 using theatreers.shared.Services;
 using Xunit;
 
-namespace Theatreers.Company.tests
+namespace Theatreers.Company.Tests
 {
     public class CompaniesControllerTest
     {
