@@ -36,7 +36,7 @@ steps:
   inputs:
     script: |
      echo "Unit tests initiated"
-     docker run --name test --rm -v $(agentTestResultPath)/:/$(projectName).tests/results/ $(dockerId)/$(imageName)-test:$(Build.BuildId)
+     docker run --name test --rm -v $(agentTestResultPath)/:/$(projectName).Tests/results/ $(dockerId)/$(imageName)-test:$(Build.BuildId)
      echo "Unit tests completed"
     #workingDirectory: $(Build.ArtifactStagingDirectory) # Optional
     #failOnStderr: false # Optional
