@@ -9,15 +9,15 @@ using Xunit;
 
 namespace theatreers.company.tests
 {
-    public class CompanysControllerTest
+    public class CompaniesControllerTest
     {
-        CompanysController _controller;
+        CompaniesController _controller;
         ICompanyService _service;
 
-        public CompanysControllerTest()
+        public CompaniesControllerTest()
         {
             _service = new CompanyServiceFake();
-            _controller = new CompanysController(_service);
+            _controller = new CompaniesController(_service);
         }
 
         [Fact]

@@ -1,0 +1,86 @@
+steps:
+# Restore the api project dependencies in the agent folder
+# Output them to .nugets, so that the container can use them
+- task: DotNetCoreCLI@2
+  displayName: 'Restore $(projectName) dependencies'
+  inputs:
+    command: restore
+    projects: '$(projectName)/$(projectName).csproj'
+    vstsFeed: 'theatreers.Artifacts'
+    restoreDirectory: '$(System.DefaultWorkingDirectory)/$(nugets)'
+    verbosityRestore: Normal
+# Restore the tests dependencies in the agent folder
+# Output them to .nugets, so that the container can use them
+- task: DotNetCoreCLI@2
+  displayName: 'Restore $(projectName).tests dependencies'
+  inputs:
+    command: restore
+    projects: '$(projectName).tests/$(projectName).tests.csproj'
+    vstsFeed: 'theatreers.Artifacts'
+    restoreDirectory: '$(System.DefaultWorkingDirectory)/$(nugets)'
+    verbosityRestore: Normal
+# Build the docker image to run the tests.
+# Pass in the packages argument to pass in the directory path
+# (deployment variable), also pass in target as test env.
+- task: Docker@1
+  displayName: 'Build test image'
+  inputs:
+    imageName: '$(dockerId)/$(imageName)-test:$(Build.BuildId)'    
+    arguments: '--build-arg packages="$(nugets)" --target test-env'
+    useDefaultContext: false
+    buildContext: '$(System.DefaultWorkingDirectory)'
+# Run the newly built container, also mounting the results output
+# to the local agent. NOTE there needs to be additional cmdlets to
+# docker run, otherwise a failed test causes the task to fail.
+- task: CmdLine@2
+  inputs:
+    script: |
+     echo "Unit tests initiated"
+     docker run --name test --rm -v $(agentTestResultPath)/:/$(projectName).tests/results/ $(dockerId)/$(imageName)-test:$(Build.BuildId)
+     echo "Unit tests completed"
+    #workingDirectory: $(Build.ArtifactStagingDirectory) # Optional
+    #failOnStderr: false # Optional
+# Publish the test results that are in the mounted volume, that have
+# come from the container. This will be a type of VSTest rather than
+# XUnit. XUnit does not run the test, VSTest does.
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  inputs:
+    testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '$(agentTestResultPath)/TEST-*.xml' 
+# Build the run-time image for publishing.
+# Pass in the packages argument to pass in the directory path
+# (deployment variable), also pass in target as test env.
+- task: Docker@1
+  displayName: 'Build the runtime image'
+  inputs:
+    imageName: '$(dockerId)/$(imageName):$(Build.BuildId)'    
+    arguments: '--build-arg packages="$(nugets)" --target runtime'
+    useDefaultContext: false
+    buildContext: '$(System.DefaultWorkingDirectory)'
+# Login to the Azure Container Registry using the Service Connection
+- task: Docker@1
+  displayName: 'Login to Azure Container Registry'
+  inputs:
+   azureSubscriptionEndpoint: 'Theatreers Dev AzureDevOps ServPrin'
+   azureContainerRegistry: $(dockerId)
+   command: login
+# Tag the runtime image (that has the build version) with latest
+- task: Docker@1
+  displayName: 'Tag the run-time image with latest'
+  inputs:
+    command: 'Tag image'
+    arguments: '$(dockerId)/$(imageName):latest'
+    imageName: '$(dockerId)/$(imageName):$(Build.BuildId)'
+# Push the runtime image (that has the build version) to registry
+- task: Docker@1
+  displayName: 'Push the runtime image with version tag'
+  inputs:
+    command: 'push'
+    imageName: '$(dockerId)/$(imageName):$(Build.BuildId)'
+# Push the runtime image (that has the latest tag) to registry
+- task: Docker@1
+  displayName: 'Push the runtime image with latest tag'
+  inputs:
+    command: 'push'
+    imageName: '$(dockerId)/$(imageName):latest'

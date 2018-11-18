@@ -2601,6 +2601,15 @@
           }
         }
       },
+      "MySqlConnector/0.47.1": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.1/MySqlConnector.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/MySqlConnector.dll": {}
+        }
+      },
       "NETStandard.Library/2.0.3": {
         "type": "package",
         "dependencies": {
@@ -4332,6 +4341,18 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
+        }
+      },
+      "theatreers.shared/0.0.7": {
+        "type": "package",
+        "dependencies": {
+          "MySqlConnector": "0.47.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/theatreers.shared.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/theatreers.shared.dll": {}
         }
       }
     }
@@ -6765,6 +6786,21 @@
         "runtimes/win/lib/netstandard2.0/Microsoft.Win32.Registry.dll",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "MySqlConnector/0.47.1": {
+      "sha512": "bwEjq0yLcf6SKCS64/kjql8RC/mFP9n7tGVqqShMW2QgoBJr9tflEWy8S0jupMk4oMPqjqjooMQqqwzZROwPug==",
+      "type": "package",
+      "path": "mysqlconnector/0.47.1",
+      "files": [
+        ".signature.p7s",
+        "lib/net45/MySqlConnector.dll",
+        "lib/net461/MySqlConnector.dll",
+        "lib/netcoreapp2.1/MySqlConnector.dll",
+        "lib/netstandard1.3/MySqlConnector.dll",
+        "lib/netstandard2.0/MySqlConnector.dll",
+        "mysqlconnector.0.47.1.nupkg.sha512",
+        "mysqlconnector.nuspec"
       ]
     },
     "NETStandard.Library/2.0.3": {
@@ -11491,13 +11527,24 @@
         "system.xml.xpath.xdocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xdocument.nuspec"
       ]
+    },
+    "theatreers.shared/0.0.7": {
+      "sha512": "f7K9qv6MRISmnX7HlZQL/sLyechJR2u46Eu6WhpfvD5y16neVlHPFUPyY6PPBYz/zvO/ZgErEZe5OwV73i5crw==",
+      "type": "package",
+      "path": "theatreers.shared/0.0.7",
+      "files": [
+        "lib/netstandard2.0/theatreers.shared.dll",
+        "theatreers.shared.0.0.7.nupkg.sha512",
+        "theatreers.shared.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
-      "Microsoft.NETCore.App >= 2.1.0"
+      "Microsoft.NETCore.App >= 2.1.0",
+      "theatreers.shared >= 0.0.7"
     ]
   },
   "packageFolders": {
@@ -11525,7 +11572,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://theatreers.pkgs.visualstudio.com/_packaging/theatreers.Artifacts/nuget/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.1": {
@@ -11556,6 +11604,10 @@
             "target": "Package",
             "version": "[2.1.0, )",
             "autoReferenced": true
+          },
+          "theatreers.shared": {
+            "target": "Package",
+            "version": "[0.0.7, )"
           }
         },
         "imports": [
