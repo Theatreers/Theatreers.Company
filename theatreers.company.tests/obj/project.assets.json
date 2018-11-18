@@ -3105,7 +3105,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "theatreers.shared/0.0.7": {
+      "theatreers.shared/0.0.8": {
         "type": "package",
         "dependencies": {
           "MySqlConnector": "0.47.1"
@@ -3202,18 +3202,18 @@
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "theatreers.company/1.0.0": {
+      "Theatreers.Company/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
           "Microsoft.NETCore.App": "2.1.0",
-          "theatreers.shared": "0.0.7"
+          "theatreers.shared": "0.0.8"
         },
         "compile": {
-          "bin/placeholder/theatreers.company.dll": {}
+          "bin/placeholder/Theatreers.Company.dll": {}
         },
         "runtime": {
-          "bin/placeholder/theatreers.company.dll": {}
+          "bin/placeholder/Theatreers.Company.dll": {}
         }
       }
     }
@@ -9261,13 +9261,13 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "theatreers.shared/0.0.7": {
-      "sha512": "f7K9qv6MRISmnX7HlZQL/sLyechJR2u46Eu6WhpfvD5y16neVlHPFUPyY6PPBYz/zvO/ZgErEZe5OwV73i5crw==",
+    "theatreers.shared/0.0.8": {
+      "sha512": "6n2nea071a+C+Q5RRfjf6G9fLScW/zdZNM68h35du+JCkeryBaN/9Gvbt9tWGZ1D6WerDEw8rGFRPZMlqKjvWg==",
       "type": "package",
-      "path": "theatreers.shared/0.0.7",
+      "path": "theatreers.shared/0.0.8",
       "files": [
         "lib/netstandard2.0/theatreers.shared.dll",
-        "theatreers.shared.0.0.7.nupkg.sha512",
+        "theatreers.shared.0.0.8.nupkg.sha512",
         "theatreers.shared.nuspec"
       ]
     },
@@ -9392,10 +9392,10 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "theatreers.company/1.0.0": {
+    "Theatreers.Company/1.0.0": {
       "type": "project",
-      "path": "../theatreers.company/theatreers.company.csproj",
-      "msbuildProject": "../theatreers.company/theatreers.company.csproj"
+      "path": "../Theatreers.Company/Theatreers.Company.csproj",
+      "msbuildProject": "../Theatreers.Company/Theatreers.Company.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -9406,7 +9406,7 @@
       "System.Diagnostics.TraceSource >= 4.3.0",
       "System.Runtime.Loader >= 4.3.0",
       "System.Xml.XPath.XmlDocument >= 4.3.0",
-      "theatreers.company >= 1.0.0",
+      "Theatreers.Company >= 1.0.0",
       "xunit >= 2.3.1",
       "xunit.runner.visualstudio >= 2.3.1"
     ]
@@ -9418,11 +9418,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\theatreers.company.tests\\theatreers.company.tests.csproj",
+      "projectUniqueName": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\Theatreers.Company.Tests\\theatreers.company.tests.csproj",
       "projectName": "theatreers.company.tests",
-      "projectPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\theatreers.company.tests\\theatreers.company.tests.csproj",
+      "projectPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\Theatreers.Company.Tests\\theatreers.company.tests.csproj",
       "packagesPath": "C:\\Users\\chredd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\theatreers.company.tests\\obj\\",
+      "outputPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\Theatreers.Company.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -9442,8 +9442,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\theatreers.company\\theatreers.company.csproj": {
-              "projectPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\theatreers.company\\theatreers.company.csproj"
+            "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\Theatreers.Company\\Theatreers.Company.csproj": {
+              "projectPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\Theatreers.Company\\Theatreers.Company.csproj"
             }
           }
         }

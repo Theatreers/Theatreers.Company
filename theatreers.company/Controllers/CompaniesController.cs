@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using theatreers.shared.Models;
 using theatreers.shared.Interfaces;
 
-namespace theatreers.company.Controllers
+namespace Theatreers.Company.Controllers
 {
     //[Authorize]
     [Route("companies")]
@@ -24,7 +24,7 @@ namespace theatreers.company.Controllers
 
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<Company>> Get()
+        public ActionResult<IEnumerable<CompanyModel>> Get()
         {               
             var items = _service.GetAll();
             return Ok(items);
@@ -32,7 +32,7 @@ namespace theatreers.company.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<Company> Get(int id)
+        public ActionResult<CompanyModel> Get(int id)
         {   
             var item = _service.GetById(id);
     
@@ -46,20 +46,20 @@ namespace theatreers.company.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult Post([FromBody] Company body)
+        public ActionResult Post([FromBody] CompanyModel body)
         {      
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
     
-            Company item = _service.Create(body);
+            CompanyModel item = _service.Create(body);
             return CreatedAtAction("Get", new { id = item.Id }, item);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public ActionResult<Company> Put([FromBody] Company body)
+        public ActionResult<CompanyModel> Put([FromBody] CompanyModel body)
         {                
             var existingItem = _service.GetById(body.Id);
  

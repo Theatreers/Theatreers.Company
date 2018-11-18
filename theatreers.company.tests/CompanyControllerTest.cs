@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using theatreers.company.Controllers;
+using Theatreers.Company.Controllers;
 using theatreers.shared.Interfaces;
 using theatreers.shared.Models;
 using theatreers.shared.Services;
 using Xunit;
 
-namespace theatreers.company.tests
+namespace Theatreers.Company.tests
 {
     public class CompaniesControllerTest
     {
@@ -37,7 +37,7 @@ namespace theatreers.company.tests
             var okResult = _controller.Get().Result as OkObjectResult;
 
             // Assert
-            var items = Assert.IsType<List<Company>>(okResult.Value);
+            var items = Assert.IsType<List<CompanyModel>>(okResult.Value);
             Assert.Equal(3, items.Count);
         }
 
@@ -74,15 +74,15 @@ namespace theatreers.company.tests
             var okResult = _controller.Get(testId).Result as OkObjectResult;
 
             // Assert
-            Assert.IsType<Company>(okResult.Value);
-            Assert.Equal(testId, (okResult.Value as Company).Id);
+            Assert.IsType<CompanyModel>(okResult.Value);
+            Assert.Equal(testId, (okResult.Value as CompanyModel).Id);
         }
 
         [Fact]
         public void Add_InvalidObjectPassed_ReturnsBadRequest()
         {
             // Arrange
-            var nameMissingItem = new Company()
+            var nameMissingItem = new CompanyModel()
             {
                 Id = 1
             };
@@ -100,7 +100,7 @@ namespace theatreers.company.tests
         public void Add_ValidObjectPassed_ReturnsCreatedResponse()
         {
             // Arrange
-            Company testItem = new Company()
+            CompanyModel testItem = new CompanyModel()
             {
                 Name = "Les Miserables"
             };
@@ -116,17 +116,17 @@ namespace theatreers.company.tests
         public void Add_ValidObjectPassed_ReturnedResponseHasCreatedItem()
         {
             // Arrange
-            var testItem = new Company()
+            var testItem = new CompanyModel()
             {
                 Name = "HAODS"
             };
 
             // Act
             var createdResponse = _controller.Post(testItem) as CreatedAtActionResult;
-            var item = createdResponse.Value as Company;
+            var item = createdResponse.Value as CompanyModel;
 
             // Assert
-            Assert.IsType<Company>(item);
+            Assert.IsType<CompanyModel>(item);
             Assert.Equal(testItem.Name, item.Name);
         }
 
@@ -167,7 +167,7 @@ namespace theatreers.company.tests
 
             // Assert
             var validateCount = _controller.Get().Result as OkObjectResult;
-            var updatedItems = Assert.IsType<List<Company>>(validateCount.Value);
+            var updatedItems = Assert.IsType<List<CompanyModel>>(validateCount.Value);
             Assert.Equal(2, updatedItems.Count);
         }
 
@@ -175,7 +175,7 @@ namespace theatreers.company.tests
         public void Update_NotExistingGuidPassed_ReturnsNotFoundResponse()
         {            
             // Arrange
-            var proposedUpdate = new Company()
+            var proposedUpdate = new CompanyModel()
             {
                 Id = 13674,
                 Name = "Wokingham Theatre"
@@ -192,7 +192,7 @@ namespace theatreers.company.tests
         public void Update_ValidObjectPassed_ReturnedResponseHasUpdatedItem()
         {
             // Arrange
-            var proposedUpdate = new Company()
+            var proposedUpdate = new CompanyModel()
             {
                 Id = 1,
                 Name = "Reading Operatic Society"
@@ -203,8 +203,8 @@ namespace theatreers.company.tests
             
             // Assert
             var validateResult = _controller.Get(proposedUpdate.Id).Result as OkObjectResult;
-            Assert.IsType<Company>(okResult.Value);
-            Assert.Equal(proposedUpdate.Name, (okResult.Value as Company).Name);
+            Assert.IsType<CompanyModel>(okResult.Value);
+            Assert.Equal(proposedUpdate.Name, (okResult.Value as CompanyModel).Name);
         }
     }
 }

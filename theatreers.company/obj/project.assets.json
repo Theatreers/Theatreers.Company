@@ -4343,7 +4343,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "theatreers.shared/0.0.7": {
+      "theatreers.shared/0.0.8": {
         "type": "package",
         "dependencies": {
           "MySqlConnector": "0.47.1"
@@ -11528,13 +11528,13 @@
         "system.xml.xpath.xdocument.nuspec"
       ]
     },
-    "theatreers.shared/0.0.7": {
-      "sha512": "f7K9qv6MRISmnX7HlZQL/sLyechJR2u46Eu6WhpfvD5y16neVlHPFUPyY6PPBYz/zvO/ZgErEZe5OwV73i5crw==",
+    "theatreers.shared/0.0.8": {
+      "sha512": "6n2nea071a+C+Q5RRfjf6G9fLScW/zdZNM68h35du+JCkeryBaN/9Gvbt9tWGZ1D6WerDEw8rGFRPZMlqKjvWg==",
       "type": "package",
-      "path": "theatreers.shared/0.0.7",
+      "path": "theatreers.shared/0.0.8",
       "files": [
         "lib/netstandard2.0/theatreers.shared.dll",
-        "theatreers.shared.0.0.7.nupkg.sha512",
+        "theatreers.shared.0.0.8.nupkg.sha512",
         "theatreers.shared.nuspec"
       ]
     }
@@ -11544,7 +11544,7 @@
       "Microsoft.AspNetCore.App >= 2.1.1",
       "Microsoft.AspNetCore.Razor.Design >= 2.1.2",
       "Microsoft.NETCore.App >= 2.1.0",
-      "theatreers.shared >= 0.0.7"
+      "theatreers.shared >= 0.0.8"
     ]
   },
   "packageFolders": {
@@ -11554,11 +11554,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\theatreers.company\\theatreers.company.csproj",
-      "projectName": "theatreers.company",
-      "projectPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\theatreers.company\\theatreers.company.csproj",
+      "projectUniqueName": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\Theatreers.Company\\Theatreers.Company.csproj",
+      "projectName": "Theatreers.Company",
+      "projectPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\Theatreers.Company\\Theatreers.Company.csproj",
       "packagesPath": "C:\\Users\\chredd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\theatreers.company\\obj\\",
+      "outputPath": "C:\\Users\\chredd\\Documents\\Theatreers\\theatreers.company\\Theatreers.Company\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -11607,7 +11607,7 @@
           },
           "theatreers.shared": {
             "target": "Package",
-            "version": "[0.0.7, )"
+            "version": "[0.0.8, )"
           }
         },
         "imports": [
