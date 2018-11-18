@@ -12,10 +12,10 @@ steps:
 # Restore the tests dependencies in the agent folder
 # Output them to .nugets, so that the container can use them
 - task: DotNetCoreCLI@2
-  displayName: 'Restore $(projectName).tests dependencies'
+  displayName: 'Restore $(projectName).Tests dependencies'
   inputs:
     command: restore
-    projects: '$(projectName).tests/$(projectName).tests.csproj'
+    projects: '$(projectName).tests/$(projectName).Tests.csproj'
     vstsFeed: 'theatreers.Artifacts'
     restoreDirectory: '$(System.DefaultWorkingDirectory)/$(nugets)'
     verbosityRestore: Normal

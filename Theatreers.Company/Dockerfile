@@ -28,16 +28,16 @@ RUN dotnet publish /Theatreers.Company/Theatreers.Company.csproj --source ".nuge
 # Restore the packages for the original package
 
 FROM build-env AS test-env
-WORKDIR /Theatreers.Company.tests
-COPY Theatreers.Company.tests/. ./
+WORKDIR /Theatreers.Company.Tests
+COPY Theatreers.Company.Tests/. ./
 RUN dotnet restore --source "/Theatreers.Company/.nugets"
 
 # Run the test output it to an XML file in the results directory
 # Copy that file back to the main agent, ready for the publish
 # task later on
-ENTRYPOINT dotnet test --"logger:trx;LogFileName=/Theatreers.Company.tests/results/TEST-output.xml"  --no-restore
+ENTRYPOINT dotnet test --"logger:trx;LogFileName=/Theatreers.Company.Tests/results/TEST-output.xml"  --no-restore
 # Chown all the files to the app user.
-RUN chmod -R o+wrx /Theatreers.Company.tests
+RUN chmod -R o+wrx /Theatreers.Company.Tests
 
 # Now, let's switch to building the runtime image.
 # We will use the aspnetcore-runtime image for this.
