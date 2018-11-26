@@ -1,0 +1,51 @@
+steps:
+# Restore the api project dependencies in the agent folder
+# Output them to .nugets, so that the container can use them
+- task: DotNetCoreCLI@2
+  displayName: 'Restore $(projectName) dependencies'
+  inputs:
+    command: restore
+    projects: '$(projectName)/$(projectName).csproj'
+    vstsFeed: 'theatreers.Artifacts'
+    restoreDirectory: '$(System.DefaultWorkingDirectory)/$(nugets)'
+    verbosityRestore: Normal
+# Restore the tests dependencies in the agent folder
+# Output them to .nugets, so that the container can use them
+- task: DotNetCoreCLI@2
+  displayName: 'Restore $(projectName).Tests dependencies'
+  inputs:
+    command: restore
+    projects: '$(projectName).Tests/$(projectName).Tests.csproj'
+    vstsFeed: 'theatreers.Artifacts'
+    restoreDirectory: '$(System.DefaultWorkingDirectory)/$(nugets)'
+    verbosityRestore: Normal
+# Build the docker image to run the tests.
+# Pass in the packages argument to pass in the directory path
+# (deployment variable), also pass in target as test env.
+- task: Docker@1
+  displayName: 'Build test image'
+  inputs:
+    imageName: '$(dockerId)/$(imageName)-test:$(Build.BuildId)'    
+    arguments: '--build-arg packages="$(nugets)" --target test-env'
+    useDefaultContext: false
+    buildContext: '$(System.DefaultWorkingDirectory)'
+# Run the newly built container, copy the results output
+# to the local agent. NOTE there needed to be a separate call to
+# docker run, otherwise a failed test causes the task to fail.
+- task: CmdLine@2
+  inputs:
+    script: |
+     echo "Unit tests initiated"
+     docker run --name test $(dockerId)/$(imageName)-test:$(Build.BuildId)
+     docker cp test:/$(projectName).Tests/results/ $(pwd)/
+     docker stop test && docker rm test
+     echo "Unit tests completed"
+    workingDirectory: $(Build.ArtifactStagingDirectory) # Optional
+# Publish the test results that are in the mounted volume, that have
+# come from the container. This will be a type of VSTest rather than
+# XUnit. XUnit does not run the test, VSTest does.
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  inputs:
+    testResultsFormat: 'VSTest' # Options: JUnit, NUnit, VSTest, xUnit
+    testResultsFiles: '$(Build.ArtifactStagingDirectory)/results/TEST-*.xml' 
