@@ -79,7 +79,7 @@ steps:
    azureSubscriptionEndpoint: 'Theatreers Dev AzureDevOps ServPrin'
    azureContainerRegistry: $(dockerId)
    command: login
- Tag the runtime image (that has the build version) with latest
+# Tag the runtime image (that has the build version) with latest
 - task: Docker@1
   displayName: 'Tag the run-time image with latest'
   inputs:
