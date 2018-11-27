@@ -20,6 +20,6 @@ namespace Theatreers.Company
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseApplicationInsights(); // Enable Application Insights
+                .UseApplicationInsights("0d92ec83-799f-4bf4-b70c-2ad3a15c2fb2"); // Enable Application Insights
     }
 }
