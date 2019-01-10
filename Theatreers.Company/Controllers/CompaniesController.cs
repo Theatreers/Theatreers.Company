@@ -20,10 +20,10 @@ namespace Theatreers.Company.Controllers
     
         public CompaniesController(ICompanyService service)
         {
-            if (!service){
-                _service = new CompanyService();
+            if (service){
+                _service = service;
             } else {
-            _service = service;
+                 _service = new CompanyService();
             }
         }
 
