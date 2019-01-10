@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Theatreers.Shared.Models;
 using Theatreers.Shared.Interfaces;
+using Theatreers.Shared.Services;
 
 namespace Theatreers.Company.Controllers
 {
@@ -19,7 +20,10 @@ namespace Theatreers.Company.Controllers
     
         public CompaniesController(ICompanyService service)
         {
-            _service = service;
+            if !(service){
+                _service = new CompanyService();
+            } else {
+            _service = service;}
         }
 
         // GET api/values
