@@ -1,4 +1,14 @@
 steps:
+- task: DotNetCoreInstaller@0
+  displayName: 'Use .NET Core sdk 2.2.101'
+  inputs:
+    version: 2.2.101
+# NuGet Tool Installer
+# Acquires a specific version of NuGet from the internet or the tools cache and adds it to the PATH. Use this task to change the version of NuGet used in the NuGet tasks.
+- task: NuGetToolInstaller@0
+  inputs:
+    versionSpec: '>=4.3.0' 
+    checkLatest: true # Optional
 # Restore the api project dependencies in the agent folder
 # Output them to .nugets, so that the container can use them
 - task: DotNetCoreCLI@2
