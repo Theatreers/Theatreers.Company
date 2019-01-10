@@ -15,7 +15,7 @@ namespace Theatreers.Company.Controllers
     public class CompaniesController : ControllerBase
     {
 
-        private readonly CompanyService _service;
+        private readonly ICompanyService _service;
     
         public CompaniesController(ICompanyService service)
         {
