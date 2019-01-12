@@ -31,7 +31,7 @@ namespace Theatreers.Company.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public ActionResult<CompanyModel> Get(int id)
         {   
             var item = _service.GetById(id);
