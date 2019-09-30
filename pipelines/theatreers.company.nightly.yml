@@ -1,8 +1,7 @@
-queue:
-  demands: java
 jobs:
 - job: Linux
   pool:  
+    demands: java
     vmImage: 'ubuntu-latest'
   steps:
   - task: DotNetCoreInstaller@0
