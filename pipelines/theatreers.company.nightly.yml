@@ -87,13 +87,19 @@ jobs:
       arguments: '--build-arg packages="$(nugets)" --target runtime'
       useDefaultContext: false
       buildContext: '$(System.DefaultWorkingDirectory)'
-  # Login to the Azure Container Registry using the Service Connection
-  - task: Docker@1
-    displayName: 'Login to Azure Container Registry'
+  - task: AzureCLI@2
     inputs:
-     azureSubscriptionEndpoint: 'Theatreers Dev AzureDevOps ServPrin'
-     azureContainerRegistry: $(dockerId)
-     command: login
+      azureSubscription: 'reddobowen MSDN Original(0d9fd97f-71f6-4b7b-adbb-3a654846e587)'
+      scriptType: 'batch'
+      scriptLocation: 'inlineScript'
+      inlineScript: 'az acr login --name theatreers'
+  # Login to the Azure Container Registry using the Service Connection
+  #- task: Docker@1
+  #  displayName: 'Login to Azure Container Registry'
+  #  inputs:
+  #   azureSubscriptionEndpoint: 'Theatreers Dev AzureDevOps ServPrin'
+  #   azureContainerRegistry: $(dockerId)
+  #   command: login
   # Tag the runtime image (that has the build version) with latest
   - task: Docker@1
     displayName: 'Tag the run-time image with latest'
