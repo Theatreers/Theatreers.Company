@@ -108,11 +108,17 @@ jobs:
       arguments: '$(dockerId)/$(imageName):latest'
       imageName: '$(dockerId)/$(imageName):$(Build.BuildId)'
   # Push the runtime image (that has the build version) to registry
+  - task: Docker@2
+    inputs:
+      containerRegistry: '$(dockerId)'
+      repository: '$(imageName)'
+      command: 'push'
+      Dockerfile: '**/Dockerfile'
   - task: Docker@1
     displayName: 'Push the runtime image with version tag'
     inputs:
       command: 'push'
-      imageName: '$(dockerId)/$(imageName):$(Build.BuildId)'
+      imageName: '/:$(Build.BuildId)'
   # Push the runtime image (that has the latest tag) to registry
   - task: Docker@1
     displayName: 'Push the runtime image with latest tag'
