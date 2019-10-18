@@ -59,12 +59,11 @@ stages:
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
+        arguments: '--build-arg packages="$(nugets)" --target runtime'
+        buildContext: '$(System.DefaultWorkingDirectory)'
         command: buildAndPush
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)        
-        arguments: '--build-arg packages="$(nugets)" --target runtime'
         containerRegistry: $(dockerRegistryServiceConnection)
-        useDefaultContext: false
-        buildContext: '$(System.DefaultWorkingDirectory)'
         tags: |
           $(tag)
