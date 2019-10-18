@@ -15,6 +15,9 @@ variables:
   containerRegistry: 'theatreers.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Theatreers.Company/Dockerfile'
   tag: '$(Build.BuildId)'
+  projectName: 'Theatreers.Company'
+  nugets: './nugets'
+  BuildConfiguration: 'Release'
   
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
