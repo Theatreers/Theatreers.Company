@@ -89,7 +89,7 @@ jobs:
       buildContext: '$(System.DefaultWorkingDirectory)'
   - task: AzureCLI@2
     inputs:
-      azureSubscription: 'reddobowen MSDN Original(0d9fd97f-71f6-4b7b-adbb-3a654846e587)'
+      azureSubscription: 'Theatreers Dev AzureDevOps ServPrin'
       scriptType: 'bash'
       scriptLocation: 'inlineScript'
       inlineScript: 'az acr login --name theatreers'
