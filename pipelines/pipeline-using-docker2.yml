@@ -64,5 +64,7 @@ stages:
         dockerfile: $(dockerfilePath)        
         arguments: '--build-arg packages="$(nugets)" --target runtime'
         containerRegistry: $(dockerRegistryServiceConnection)
+        useDefaultContext: false
+        buildContext: '$(System.DefaultWorkingDirectory)'
         tags: |
           $(tag)
