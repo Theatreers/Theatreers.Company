@@ -28,12 +28,38 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+    - task: DotNetCoreInstaller@0
+      displayName: 'Use .NET Core sdk 2.2.101'
+      inputs:
+        version: 2.2.101
+    # NuGet Tool Installer
+    # Acquires a specific version of NuGet from the internet or the tools cache and adds it to the PATH. Use this task to change the version of NuGet used in the NuGet tasks.
+    - task: NuGetToolInstaller@0
+      inputs:
+        versionSpec: '>=4.3.0' 
+        checkLatest: true # Optional
+    # Restore the dependencies for the solution as a whole
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: '$(projectName).sln'
+        vstsFeed: 'theatreers.Artifacts'
+        restoreDirectory: '$(System.DefaultWorkingDirectory)/$(nugets)'
+    # Build the solution natively on the agent, to allow sonar cloud
+    # to analyse as part of the next task.
+    - task: DotNetCoreCLI@2
+      displayName: Build
+      inputs:
+        projects: '$(projectName).sln'
+        arguments: '--configuration $(BuildConfiguration) --source $(nugets)'
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
+        dockerfile: $(dockerfilePath)        
+        arguments: '--build-arg packages="$(nugets)" --target runtime'
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
